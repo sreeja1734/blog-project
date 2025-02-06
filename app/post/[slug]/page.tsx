@@ -12,12 +12,13 @@ async function getData(slug: string) {
 
 export default async function SlugPage({
   params,
+  searchParams,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const resolvedParams = await Promise.resolve(params);
-  const data = (await getData(resolvedParams.slug)) as Post;
+  const { slug } = await params;
+  const data = (await getData(slug)) as Post;
 
   const PortableTextComponent = {
     types: {

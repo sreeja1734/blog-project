@@ -7,6 +7,9 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
   baseDirectory: __dirname,
+  recommendedConfig: {
+    extends: ["eslint:recommended"]
+  }
 });
 
 const eslintConfig = [
@@ -15,7 +18,6 @@ const eslintConfig = [
   },
   ...compat.extends(
     "next/core-web-vitals",
-    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended"
