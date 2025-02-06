@@ -12,17 +12,15 @@ async function getData(slug: string) {
 
 export default async function SlugPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const { slug } = await params;
   const data = (await getData(slug)) as Post;
 
   const PortableTextComponent = {
     types: {
-      image: ({ value }: { value: any }) => (
+      image: ({ value }: { value: { asset: { _ref: string }; [key: string]: unknown } }) => (
         <Image
           src={urlFor(value).url()}
           alt="Image"
